@@ -1,0 +1,81 @@
+import F1 from '../images/fussball/fussballImage1.png'
+import F2 from '../images/fussball/fussballImage2.png'
+import F3 from '../images/fussball/fussballImage3.png'
+import F4 from '../images/fussball/fussballImage4.png'
+import F5 from '../images/fussball/fussballImage5.png'
+import F6 from '../images/fussball/fussballImage6.png'
+
+export const daten = [
+  {
+    id: 1,
+    image: F1,
+    altText: '',
+    title: 'Fußball bei Victoria Hamburg',
+    stars: 4,
+    price: 20,
+    frequency: 'monatlich',
+    zip: '22529',
+    city: 'Hamburg',
+    dates: 'Mo, Di, Mi, Do, Fr',
+  },
+  {
+    id: 2,
+    image: F2,
+    altText: '',
+    title: 'Junioren Fußball Union Berlin',
+    stars: 3,
+    price: 10,
+    frequency: 'monatlich',
+    zip: '12555',
+    city: 'Berlin',
+    dates: 'Mo, Di, Mi, Do, Fr',
+  },
+  {
+    id: 3,
+    image: F3,
+    altText: '',
+    title: 'Frauenfußball beim ETV',
+    stars: 5,
+    price: 15,
+    frequency: 'monatlich',
+    zip: '20144',
+    city: 'Hamburg',
+    dates: 'Di, Do',
+  },
+  {
+    id: 4,
+    image: F4,
+    altText: '',
+    title: 'Fußball im Stadtpark',
+    stars: 2,
+    price: 0,
+    frequency: '',
+    zip: '22303',
+    city: 'Hamburg',
+    dates: '21.03.2021',
+  },
+  {
+    id: 5,
+    image: F5,
+    altText: '',
+    title: 'Kicken in der Soccerhalle',
+    stars: 5,
+    price: 10,
+    frequency: '',
+    zip: '30519',
+    city: 'Hannover',
+    dates: '15.03.2021',
+  },
+  {
+    id: 6,
+    image: F6,
+    altText: '',
+    title: 'Fußball in München',
+    stars: 1,
+    price: 50,
+    frequency: 'monatlich',
+    zip: '80331',
+    city: 'München',
+    dates: 'Mo, Do, Fr',
+  },
+]
