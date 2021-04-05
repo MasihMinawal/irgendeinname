@@ -5,6 +5,8 @@
 /* Wenn man einen Tag hat, der offene Termine hat, jedoch die schon ausgebucht sind, wir der Tag nicht disabled */
 
 
+
+
 import { useState } from 'react'
 import styled from 'styled-components/macro'
 import { v4 as uuidv4 } from 'uuid'
@@ -121,11 +123,6 @@ export default function CreateForm({ onAddNewCard }) {
           />
         </DescriptionLabel>
       </DescriptionWrapper>
-      <ImageInput 
-          className='create-product-image-input'
-          name='avatarURL'
-          maxHeight={64}
-      />
       <PriceWrapper>
         <label>
           Preis

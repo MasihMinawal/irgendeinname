@@ -10,6 +10,7 @@ import ReviewCard from './ReviewCard'
 import Logo from '../material/images/fussball/LogoScVictoria.png'
 
 import { products } from '../material/data/data.json'
+import { favorites } from '../material/data/data.json'
 import { IconContext } from 'react-icons'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { AiOutlinePlusSquare } from 'react-icons/ai'
@@ -21,24 +22,68 @@ import { AiFillHome } from 'react-icons/ai'
 import { useHistory, useParams, withRouter } from "react-router-dom";
 
 
-export default function ProductCard({
-  id,
-  title = 'Mustertitel',
-  price = 10,
-  frequency = 'monatlich',
-  provider = 'Musterverein',
-  address = 'Musterstraße 159',
-  zip = '22099',
-  city = 'Hamburg',
-  dates = 'Mo, Di, Mi, Do, Fr',
-  description = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua..',
+export default function ProductCard({}) {
+  let [bookmarkedCard, setbookmarkedCard] = useState(0)
+  let [reviewCards, setreviewCards] = useState([])
+  const { id } = useParams(); 
 
-}) {
-  const [bookmarkedCard, setbookmarkedCard] = useState([])
-  const [reviewCards, setreviewCards] = useState([])
+  let title = "";
+  let price = "";
+  let frequency = "";
+  let provider = "";
+  let address = "";
+  let zip = "";
+  let city = "";
+  let dates = "";
+  let description = "";
+  let pId = parseInt(id);
 
- /* const { id } = useParams(); */
+ /* Fetch product data */
+ products.map(product => {
+    if(product.id === parseInt(id))
+    {
+      title = product.title;
+      price = product.price;
+      frequency = product.frequency;
+      provider = product.provider;
+      address =  product.address;
+      zip = product.zip;
+      city = product.city;
+      dates = product.dates;
+      description = product.description;
+    }
+ })
 
+
+ /* Fetch id of bookmark and delete it*/
+ const getFavoriteID = () =>
+  favorites.map(favorite => {
+  if(favorite.pId === pId)
+  {
+      return favorite.id
+  }
+ })
+
+/* Bookmarks speichern und löschen aus DB */
+ const handleClick = (e) => {
+  e.preventDefault();
+  const favorite = {pId}; 
+
+   if(bookmarkedCard === 0){
+    setbookmarkedCard(1);
+    fetch( 'http://localhost:8000/favorites/',{
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(favorite)
+    })
+   } 
+   else{
+    setbookmarkedCard(0);
+    fetch( 'http://localhost:8000/favorites/' + getFavoriteID(),{
+      method: 'DELETE',
+    })
+   }
+ }
 
 
   const bookmark = <Bookmarked />
@@ -54,9 +99,9 @@ export default function ProductCard({
             <BookmarkButton
               role="button"
               aria-label="toggle-bookmark"
-              onClick={() => bookmarkCard()}
+              onClick={handleClick}
             >
-              {bookmarkedCard.includes() ? bookmark : unbookmark}
+              {bookmarkedCard === 1 ? bookmark : unbookmark}
             </BookmarkButton>
           </BookmarkWrapper>
         </HeaderWrapper>
